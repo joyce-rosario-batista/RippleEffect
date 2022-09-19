@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIView {
+    /// Add Ripple Effect like Material Design to the view
     func addRippleEffect() {
         // Create a tap gesture that will create the ripple effect and add it to the view:
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addRippleEffectLayer(_:)))
@@ -27,7 +28,7 @@ extension UIView {
         // Fill color
         rippleShape.fillColor = UIColor.red.cgColor
         // Position will be the location of the tap gesture
-        rippleShape.position =  gesture.location(in: self)
+        rippleShape.position = gesture.location(in: self)
         // Opacity to 0 to make effect dissapear after animation ends
         rippleShape.opacity = 0
         
@@ -56,13 +57,12 @@ extension UIView {
         return opacityAnim
     }
     
-    // Group scale and opacity animation to combine them. Set duration and repeat just once.
+    // Group scale and opacity animation to combine them.
     private func groupAnimations() -> CAAnimationGroup {
         let animation = CAAnimationGroup()
         animation.animations = [scaleAnimation(), opacityAnimation()]
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         animation.duration = CFTimeInterval(0.7)
-        animation.repeatCount = 1
         animation.isRemovedOnCompletion = true
         return animation
     }
