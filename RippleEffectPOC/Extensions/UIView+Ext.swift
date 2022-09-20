@@ -9,14 +9,15 @@ import UIKit
 
 extension UIView {
     /// Add Ripple Effect like Material Design
-    func addRippleEffect() {
+    func addRippleEffect(_ color: UIColor = .gray) {
         // Create a tap gesture to create the ripple effect
         // and add it to the view itself:
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addRippleEffectLayer(_:)))
+        let tapGesture = CustomTapGestureRecognizer(target: self, action: #selector(addRippleEffectLayer(_:)))
+        tapGesture.params = [color]
         self.addGestureRecognizer(tapGesture)
     }
     
-    @objc private func addRippleEffectLayer(_ gesture: UITapGestureRecognizer) {
+    @objc private func addRippleEffectLayer(_ gesture: CustomTapGestureRecognizer) {
         // Create circular path around the view:
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height), cornerRadius: self.bounds.size.height)
         
@@ -27,7 +28,8 @@ extension UIView {
         // Shape layer path will be the circular path created before
         rippleShape.path = path.cgPath
         // Fill color
-        rippleShape.fillColor = UIColor.red.cgColor
+        let color = gesture.params?.first as? UIColor ?? .gray
+        rippleShape.fillColor = color.cgColor
         // Position will be the location of the tap gesture
         rippleShape.position = gesture.location(in: self)
         // Opacity to 0 to make effect dissapear after animation ends
