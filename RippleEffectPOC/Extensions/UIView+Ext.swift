@@ -8,22 +8,23 @@
 import UIKit
 
 extension UIView {
-    /// Add Ripple Effect like Material Design to the view
+    /// Add Ripple Effect like Material Design
     func addRippleEffect() {
-        // Create a tap gesture that will create the ripple effect and add it to the view:
+        // Create a tap gesture to create the ripple effect
+        // and add it to the view itself:
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addRippleEffectLayer(_:)))
         self.addGestureRecognizer(tapGesture)
     }
     
     @objc private func addRippleEffectLayer(_ gesture: UITapGestureRecognizer) {
-        // Create circutar path arount the view:
+        // Create circular path around the view:
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height), cornerRadius: self.bounds.size.height)
         
         // Create shape layer
         let rippleShape = CAShapeLayer()
         // Bounds equals to view
         rippleShape.bounds = self.bounds
-        // Circular path created before
+        // Shape layer path will be the circular path created before
         rippleShape.path = path.cgPath
         // Fill color
         rippleShape.fillColor = UIColor.red.cgColor
@@ -41,7 +42,7 @@ extension UIView {
         rippleShape.add(groupAnimations(), forKey: "rippleEffect")
     }
     
-    // Scale animation to make the layer scale and make effect of grow up
+    // Scale animation to make the layer scale and make effect of expand
     private func scaleAnimation() -> CABasicAnimation {
         let scaleAnim = CABasicAnimation(withKey: .scale)
         scaleAnim.fromValue = 1
@@ -57,7 +58,7 @@ extension UIView {
         return opacityAnim
     }
     
-    // Group scale and opacity animation to combine them.
+    // Group scale and opacity animation to combine them
     private func groupAnimations() -> CAAnimationGroup {
         let animation = CAAnimationGroup()
         animation.animations = [scaleAnimation(), opacityAnimation()]
