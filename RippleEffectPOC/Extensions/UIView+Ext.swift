@@ -13,7 +13,9 @@ extension UIView {
         // Create a tap gesture to create the ripple effect
         // and add it to the view itself:
         let tapGesture = CustomTapGestureRecognizer(target: self, action: #selector(addRippleEffectLayer(_:)))
+        // Add the color as a parameter to the CustomTapGestureRecognizer
         tapGesture.params = [color]
+        // Add tap gesture to the view
         self.addGestureRecognizer(tapGesture)
     }
     
