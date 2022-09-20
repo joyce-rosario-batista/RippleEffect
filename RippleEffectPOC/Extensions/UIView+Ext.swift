@@ -27,8 +27,10 @@ extension UIView {
         rippleShape.bounds = self.bounds
         // Shape layer path will be the circular path created before
         rippleShape.path = path.cgPath
-        // Fill color
+        /// Get color from params (if color does not exists,
+        // it will be gray as default)
         let color = gesture.params?.first as? UIColor ?? .gray
+        // Fill color
         rippleShape.fillColor = color.cgColor
         // Position will be the location of the tap gesture
         rippleShape.position = gesture.location(in: self)
