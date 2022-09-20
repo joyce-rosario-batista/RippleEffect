@@ -1,6 +1,6 @@
 # RippleEffect
 
-https://user-images.githubusercontent.com/74479774/191194265-61c4d3c3-f039-4a4c-b851-bea2d8538ffc.mov
+https://user-images.githubusercontent.com/86227924/191195810-51c1dc7c-0e0c-44fe-a55d-c9b72b96678c.mov
 
 As in iOS is not a native behaviour, to create the Ripple Effect like Material Design with UIKit we have this following approach.
 
